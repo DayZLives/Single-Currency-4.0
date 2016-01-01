@@ -196,6 +196,7 @@ this to their own server.
 	```
 	if(_typeOfCursorTarget in DZE_UnLockedStorage && _ownerID != "0" && (player distance _cursorTarget < 3)) then {
 	```
+
 1. ADD 
 	```
 	//Give Money
@@ -204,11 +205,15 @@ this to their own server.
 			s_givemoney_dialog = player addAction [format["Give Money to %1", (name _cursorTarget)], "custom\singlecurrency\actions\give_player_dialog.sqf",_cursorTarget, 3, true, true, "", ""];
 		};
 	} else {
+		player removeAction s_givemoney_dialog;
+		s_givemoney_dialog = -1;
+	};
 	```
 	ABOVE
 	```
 	if(_typeOfCursorTarget in dayz_fuelpumparray) then {
 	```
+
 1. ADD
 	```
 	//Banking
@@ -233,6 +238,7 @@ this to their own server.
 	player removeAction s_player_fuelauto2;
 	s_player_fuelauto2 = -1;
 	```
+
 ##IN YOUR 'player_switchModel.sqf' IF YOU DON'T HAVE ONE USE THE ONE PROVIDED
 
 1. ADD
@@ -245,6 +251,7 @@ this to their own server.
 	_countMags = call player_countMagazines; 
 	_magazines = _countMags select 0;
 	```
+
 1. ADD
 	```
 	player setVariable ["cashMoney",_cashMoney,true];
@@ -269,6 +276,7 @@ this to their own server.
 	_newUnit setDir _dir;
 	_newUnit setVariable ["cashMoney",_cashMoney,true];
 	```
+
 ##IN YOUR 'player_unlockVault.sqf' IF YOU DON'T HAVE ONE USE THE ONE PROVIDED
 
 1. ADD
@@ -282,6 +290,7 @@ this to their own server.
 	_objectID 	= _obj getVariable["ObjectID","0"];
 	_objectUID	= _obj getVariable["ObjectUID","0"];
 	```
+
 1. ADD
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
@@ -306,6 +315,7 @@ this to their own server.
 	_objectID 	= _obj getVariable["ObjectID","0"];
 	_objectUID	= _obj getVariable["ObjectUID","0"];
 	```
+
 1. ADD
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
@@ -339,6 +349,7 @@ this to their own server.
 		_object getVariable["bankMoney",0]
 	];
 	```
+
 ##IN YOUR 'server_monitor.sqf'
 
 1. ADD
@@ -369,6 +380,7 @@ this to their own server.
 	```
 	_playerGear = [weapons _character,_magazines, _character getVariable["cashMoney",0]];
 	```
+
 1. REPLACE
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity];
@@ -377,6 +389,7 @@ this to their own server.
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:%17:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity,_cashMoney];
 	```
+
 1. ADD
 	```
 	_cashMoney = ["cashMoney",_character] call server_getDiff2;
