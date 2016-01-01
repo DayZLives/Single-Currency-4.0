@@ -333,6 +333,7 @@ this to their own server.
 ##IN YOUR 'server_updateObject.sqf'
 
 1. REPLACE
+	
 	```
 	_inventory = [
 			getWeaponCargo _object,
@@ -355,6 +356,7 @@ this to their own server.
 NOTE: the " _intentory' variable can be called "_inventory" at your files, so change my code to that, if it's the case).
 
 1. ADD
+	
 	```
 	if( count (_inventory) > 3)then{
 		_object setVariable ["bankMoney", _inventory select 3, true];
