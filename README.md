@@ -15,11 +15,11 @@ this to their own server.
 	call compile preprocessFileLineNumbers "custom\singlecurrency\CoinInit.sqf";
 	call compile preprocessFileLineNumbers "custom\singlecurrency\BankInit.sqf";
 	```
-BELOW
+	BELOW
 	```
 	progressLoadingScreen 0.6;
 	```
-NOTE: These lines MUST be after your compiles.sqf is loaded.
+	NOTE: These lines MUST be after your compiles.sqf is loaded.
 
 
 1. ADD
@@ -27,7 +27,7 @@ NOTE: These lines MUST be after your compiles.sqf is loaded.
 	execVM "custom\singlecurrency\compile\playerHud.sqf";
 	execVM "custom\singlecurrency\config\bankmarkers.sqf";
 	```
-BELOW
+	BELOW
 	```
 	_playerMonitor = 	[] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
 	```
@@ -38,7 +38,7 @@ BELOW
 	```
 	#include "custom\singlecurrency\traders\cfgServerTrader.hpp"
 	```
-AT THE VERY TOP
+	AT THE VERY TOP
 
 1. ADD
 	```
@@ -75,11 +75,10 @@ AT THE VERY TOP
 			};
 		};
 	};
-	```
-	
-AT THE BOTTOM OF THE FILE
+	```	
+	AT THE BOTTOM OF THE FILE
 
-IF YOU ALREADY HAVE 'class RscTitles {}' JUST ADD
+	IF YOU ALREADY HAVE 'class RscTitles {}' JUST ADD	
 	```
 	//Single Currency
 	class ZSC_Money_Display {
@@ -113,20 +112,19 @@ IF YOU ALREADY HAVE 'class RscTitles {}' JUST ADD
 		};
 	};
 	```
-	
-INSIDE OF 'RscTitles{}'
+	INSIDE OF 'RscTitles{}'
 
-NOTE: Do not define 'class RscTitles{}' twice! It will cause your server to crash on start.
+	NOTE: Do not define 'class RscTitles{}' twice! It will cause your server to crash on start.
 
 1. ADD
 	```
 	#include "custom\singlecurrency\config\defines.hpp"
 	```
-ABOVE
+	ABOVE
 	```
 	class RscTitles {
 	```
-NOTE: This has to be ABOVE the 'RscTitles' block!
+	NOTE: This has to be ABOVE the 'RscTitles' block!
 
 1. ADD
 	```
@@ -137,8 +135,7 @@ NOTE: This has to be ABOVE the 'RscTitles' block!
 	#include "custom\singlecurrency\transfer\transferdefines.hpp"
 	#include "custom\singlecurrency\transfer\transferdialog.hpp"
 	```
-	
-TO THE BOTTOM OF THE FILE
+	TO THE BOTTOM OF THE FILE
 
 ##IN YOUR 'fn_selfactions.sqf' IF YOU DONT HAVE ONE USE THE ONE PROVIDED
 
@@ -195,8 +192,7 @@ TO THE BOTTOM OF THE FILE
 			s_bank_dialog6 = -1;
 	};
 	```
-	
-ABOVE
+	ABOVE
 	```
 	if(_typeOfCursorTarget in DZE_UnLockedStorage && _ownerID != "0" && (player distance _cursorTarget < 3)) then {
 	```
@@ -209,8 +205,7 @@ ABOVE
 		};
 	} else {
 	```
-	
-ABOVE
+	ABOVE
 	```
 	if(_typeOfCursorTarget in dayz_fuelpumparray) then {
 	```
@@ -233,7 +228,7 @@ ABOVE
 	player removeAction s_bank_dialog6;
 	s_bank_dialog6 = -1;
 	```
-BELOW
+	BELOW
 	```
 	player removeAction s_player_fuelauto2;
 	s_player_fuelauto2 = -1;
@@ -244,7 +239,7 @@ BELOW
 	```
 	_cashMoney = player getVariable["cashMoney",0];
 	```
-AFTER
+	AFTER
 	```
 	_weapons = weapons player;
 	_countMags = call player_countMagazines; 
@@ -254,7 +249,7 @@ AFTER
 	```
 	player setVariable ["cashMoney",_cashMoney,true];
 	```
-TO THE BOTTOM OF THE FILE
+	TO THE BOTTOM OF THE FILE
 
 1. REPLACE
 	```
@@ -265,7 +260,7 @@ TO THE BOTTOM OF THE FILE
 	_newUnit 	setPosATL _position;
 	_newUnit 	setDir _dir;
 	```
-WITH
+	WITH
 	```
 	_group = createGroup west;
 	_newUnit = _group createUnit [_class,dayz_spawnPos,[],0,"NONE"];
@@ -280,7 +275,7 @@ WITH
 	```
 	_objMoney	= _obj getVariable["bankMoney",0];
 	```
-AFTER
+	AFTER
 	```
 	_dir = direction _obj;
 	_pos	= _obj getVariable["OEMPos",(getposATL _obj)];
@@ -291,7 +286,7 @@ AFTER
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
 	```
-AFTER
+	AFTER
 	```
 	_holder setVariable["CharacterID",_ownerID,true];
 	_holder setVariable["ObjectID",_objectID,true];
@@ -305,7 +300,7 @@ AFTER
 	```
 	_objMoney	= _obj getVariable["bankMoney",0];
 	```
-AFTER 
+	AFTER 
 	```
 	_ownerID = _obj getVariable["CharacterID","0"];
 	_objectID 	= _obj getVariable["ObjectID","0"];
@@ -315,7 +310,7 @@ AFTER
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
 	```
-AFTER
+	AFTER
 	```
 	_holder setVariable["CharacterID",_ownerID,true];
 	_holder setVariable["ObjectID",_objectID,true];
@@ -335,7 +330,7 @@ AFTER
 			getBackpackCargo _object
 	];
 	```
-WITH
+	WITH
 	```
 	_inventory = [
 		getWeaponCargo _object,
@@ -354,7 +349,7 @@ WITH
 	        _object setVariable ["bankMoney", 0, true];
 	};
 	```
-ABOVE
+	ABOVE
 	```
 	if (_type in DZE_LockedStorage) then {
 	// Fill variables with loot
@@ -370,7 +365,7 @@ ABOVE
 	```
 	_playerGear = [weapons _character,_magazines];
 	```
-WITH
+	WITH
 	```
 	_playerGear = [weapons _character,_magazines, _character getVariable["cashMoney",0]];
 	```
@@ -378,7 +373,7 @@ WITH
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity];
 	```
-WITH
+	WITH
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:%17:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity,_cashMoney];
 	```
@@ -386,7 +381,7 @@ WITH
 	```
 	_cashMoney = ["cashMoney",_character] call server_getDiff2;
 	```
-AFTER
+	AFTER
 	```
 	_killsH = 		["humanKills",_character] call server_getDiff;
 	_headShots = 	["headShots",_character] call server_getDiff;
