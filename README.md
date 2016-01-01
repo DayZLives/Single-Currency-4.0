@@ -15,7 +15,7 @@ this to their own server.
 	call compile preprocessFileLineNumbers "custom\singlecurrency\CoinInit.sqf";
 	call compile preprocessFileLineNumbers "custom\singlecurrency\BankInit.sqf";
 	```
-	BELOW
+	* BELOW
 	```
 	progressLoadingScreen 0.6;
 	```
@@ -27,7 +27,7 @@ this to their own server.
 	execVM "custom\singlecurrency\compile\playerHud.sqf";
 	execVM "custom\singlecurrency\config\bankmarkers.sqf";
 	```
-	BELOW
+	* BELOW
 	```
 	_playerMonitor = 	[] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
 	```
@@ -38,7 +38,7 @@ this to their own server.
 	```
 	#include "custom\singlecurrency\traders\cfgServerTrader.hpp"
 	```
-	AT THE VERY TOP
+	* AT THE VERY TOP
 
 1. ADD
 	```
@@ -76,7 +76,7 @@ this to their own server.
 		};
 	};
 	```	
-	AT THE BOTTOM OF THE FILE
+	* AT THE BOTTOM OF THE FILE
 
 	IF YOU ALREADY HAVE 'class RscTitles {}' JUST ADD	
 	```
@@ -112,7 +112,7 @@ this to their own server.
 		};
 	};
 	```
-	INSIDE OF 'RscTitles{}'
+	* INSIDE OF 'RscTitles{}'
 
 	NOTE: Do not define 'class RscTitles{}' twice! It will cause your server to crash on start.
 
@@ -120,7 +120,7 @@ this to their own server.
 	```
 	#include "custom\singlecurrency\config\defines.hpp"
 	```
-	ABOVE
+	* ABOVE
 	```
 	class RscTitles {
 	```
@@ -135,7 +135,7 @@ this to their own server.
 	#include "custom\singlecurrency\transfer\transferdefines.hpp"
 	#include "custom\singlecurrency\transfer\transferdialog.hpp"
 	```
-	TO THE BOTTOM OF THE FILE
+	* TO THE BOTTOM OF THE FILE
 
 ##IN YOUR 'fn_selfactions.sqf' IF YOU DONT HAVE ONE USE THE ONE PROVIDED
 
@@ -192,7 +192,7 @@ this to their own server.
 			s_bank_dialog6 = -1;
 	};
 	```
-	ABOVE
+	* ABOVE
 	```
 	if(_typeOfCursorTarget in DZE_UnLockedStorage && _ownerID != "0" && (player distance _cursorTarget < 3)) then {
 	```
@@ -209,7 +209,7 @@ this to their own server.
 		s_givemoney_dialog = -1;
 	};
 	```
-	ABOVE
+	* ABOVE
 	```
 	if(_typeOfCursorTarget in dayz_fuelpumparray) then {
 	```
@@ -233,7 +233,7 @@ this to their own server.
 	player removeAction s_bank_dialog6;
 	s_bank_dialog6 = -1;
 	```
-	BELOW
+	* BELOW
 	```
 	player removeAction s_player_fuelauto2;
 	s_player_fuelauto2 = -1;
@@ -245,7 +245,7 @@ this to their own server.
 	```
 	_cashMoney = player getVariable["cashMoney",0];
 	```
-	AFTER
+	* AFTER
 	```
 	_weapons = weapons player;
 	_countMags = call player_countMagazines; 
@@ -256,7 +256,7 @@ this to their own server.
 	```
 	player setVariable ["cashMoney",_cashMoney,true];
 	```
-	TO THE BOTTOM OF THE FILE
+	* TO THE BOTTOM OF THE FILE
 
 1. REPLACE
 	```
@@ -267,7 +267,7 @@ this to their own server.
 	_newUnit 	setPosATL _position;
 	_newUnit 	setDir _dir;
 	```
-	WITH
+	* WITH
 	```
 	_group = createGroup west;
 	_newUnit = _group createUnit [_class,dayz_spawnPos,[],0,"NONE"];
@@ -283,7 +283,7 @@ this to their own server.
 	```
 	_objMoney	= _obj getVariable["bankMoney",0];
 	```
-	AFTER
+	* AFTER
 	```
 	_dir = direction _obj;
 	_pos	= _obj getVariable["OEMPos",(getposATL _obj)];
@@ -295,7 +295,7 @@ this to their own server.
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
 	```
-	AFTER
+	* AFTER
 	```
 	_holder setVariable["CharacterID",_ownerID,true];
 	_holder setVariable["ObjectID",_objectID,true];
@@ -309,7 +309,7 @@ this to their own server.
 	```
 	_objMoney	= _obj getVariable["bankMoney",0];
 	```
-	AFTER 
+	* AFTER 
 	```
 	_ownerID = _obj getVariable["CharacterID","0"];
 	_objectID 	= _obj getVariable["ObjectID","0"];
@@ -320,7 +320,7 @@ this to their own server.
 	```
 	_holder setVariable ["bankMoney", _objMoney, true];
 	```
-	AFTER
+	* AFTER
 	```
 	_holder setVariable["CharacterID",_ownerID,true];
 	_holder setVariable["ObjectID",_objectID,true];
@@ -340,7 +340,7 @@ this to their own server.
 			getBackpackCargo _object
 	];
 	```
-	WITH
+	* WITH
 	```
 	_inventory = [
 		getWeaponCargo _object,
@@ -362,7 +362,7 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	        _object setVariable ["bankMoney", 0, true];
 	};
 	```
-	ABOVE
+	* ABOVE
 	```
 	if (_type in DZE_LockedStorage) then {
 		// Fill variables with loot
@@ -378,7 +378,7 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	```
 	_playerGear = [weapons _character,_magazines];
 	```
-	WITH
+	* WITH
 	```
 	_playerGear = [weapons _character,_magazines, _character getVariable["cashMoney",0]];
 	```
@@ -387,7 +387,7 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity];
 	```
-	WITH
+	* WITH
 	```
 	_key = format["CHILD:201:%1:%2:%3:%4:%5:%6:%7:%8:%9:%10:%11:%12:%13:%14:%15:%16:%17:",_characterID,_playerPos,_playerGear,_playerBackp,_medical,false,false,_kills,_headShots,_distanceFoot,_timeSince,_currentState,_killsH,_killsB,_currentModel,_humanity,_cashMoney];
 	```
@@ -396,7 +396,7 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	```
 	_cashMoney = ["cashMoney",_character] call server_getDiff2;
 	```
-	AFTER
+	* AFTER
 	```
 	_killsH = 		["humanKills",_character] call server_getDiff;
 	_headShots = 	["headShots",_character] call server_getDiff;
