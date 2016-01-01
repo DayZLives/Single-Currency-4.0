@@ -352,10 +352,12 @@ this to their own server.
 
 ##IN YOUR 'server_monitor.sqf'
 
+NOTE: the " _intentory' variable can be called "_inventory" at your files, so change my code to that, if it's the case).
+
 1. ADD
 	```
-	if( count (_intentory) > 3)then{
-		_object setVariable ["bankMoney", _intentory select 3, true];
+	if( count (_inventory) > 3)then{
+		_object setVariable ["bankMoney", _inventory select 3, true];
 	}else{
 	        _object setVariable ["bankMoney", 0, true];
 	};
@@ -364,9 +366,9 @@ this to their own server.
 	```
 	if (_type in DZE_LockedStorage) then {
 	// Fill variables with loot
-	_object setVariable ["WeaponCargo", (_intentory select 0),true];
-	_object setVariable ["MagazineCargo", (_intentory select 1),true];
-	_object setVariable ["BackpackCargo", (_intentory select 2),true];
+	_object setVariable ["WeaponCargo", (_inventory select 0),true];
+	_object setVariable ["MagazineCargo", (_inventory select 1),true];
+	_object setVariable ["BackpackCargo", (_inventory select 2),true];
 	} else {
 	```
 
