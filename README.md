@@ -365,10 +365,10 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	ABOVE
 	```
 	if (_type in DZE_LockedStorage) then {
-	// Fill variables with loot
-	_object setVariable ["WeaponCargo", (_inventory select 0),true];
-	_object setVariable ["MagazineCargo", (_inventory select 1),true];
-	_object setVariable ["BackpackCargo", (_inventory select 2),true];
+		// Fill variables with loot
+		_object setVariable ["WeaponCargo", (_inventory select 0),true];
+		_object setVariable ["MagazineCargo", (_inventory select 1),true];
+		_object setVariable ["BackpackCargo", (_inventory select 2),true];
 	} else {
 	```
 
