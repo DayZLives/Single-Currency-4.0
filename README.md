@@ -17,7 +17,7 @@ this to their own server.
 	```
 	* BELOW
 	```
-	progressLoadingScreen 0.6;
+	progressLoadingScreen 0.5;
 	```
 	NOTE: These lines MUST be after your compiles.sqf is loaded.
 
@@ -239,6 +239,28 @@ this to their own server.
 	s_player_fuelauto2 = -1;
 	```
 
+##IN YOUR 'variables.sqf' IF YOU DON'T HAVE ONE USE THE ONE PROVIDED
+
+1. ADD
+
+	```
+	s_givemoney_dialog = -1;
+	s_bank_dialog = -1;
+	s_bank_dialog2 = -1;
+	s_bank_dialog3 = -1;
+	s_bank_dialog4 = -1;
+	s_bank_dialog5 = -1;
+	s_bank_dialog6 = -1;
+	```
+	
+	* AFTER
+	
+	```
+	s_player_heli_lift = -1;
+	s_player_heli_detach = -1;
+	s_player_lockUnlock_crtl = -1;
+	```
+	
 ##IN YOUR 'player_switchModel.sqf' IF YOU DON'T HAVE ONE USE THE ONE PROVIDED
 
 1. ADD
@@ -404,3 +426,153 @@ NOTE: the " _intentory' variable can be called "_inventory" at your files, so ch
 	_headShots = 	["headShots",_character] call server_getDiff;
 	_humanity = 	["humanity",_character] call server_getDiff2;
 	```
+	
+##IN YOUR 'server_functions.sqf'
+
+1. ADD
+	
+	```
+	#include "\z\addons\dayz_server\bankzones\bankinit.sqf"
+	```
+	
+	* AT THE BOTTOM
+	
+##IN YOUR 'player_login.sqf'
+
+1. REPLACE
+
+	```
+	_key = format["CHILD:203:%1:%2:%3:",_charID,[_wpns,_mags],[_bcpk,[],[]]];
+	```
+	
+	* WITH
+	
+	```
+	_key = format["CHILD:203:%1:%2:%3:",_charID,[_wpns,_mags,0],[_bcpk,[],[]]];
+	```
+	
+##IN YOUR 'server_playerSetup.sqf'
+
+1. ADD
+
+	```
+	_playerName = name _playerObj;
+	```
+	
+	* AFTER
+	
+	```
+	_characterID = _this select 0;
+	_playerObj = _this select 1;
+	_playerID = getPlayerUID _playerObj;
+	```
+	
+1. ADD
+
+	```
+	_cashMoney = 0;
+	_bankMoney = 0;
+	```
+	
+	* AFTER
+	
+	```
+	_worldspace = 	[];
+
+	_state = 		[];
+	```
+	
+1. ADD
+
+	```
+	_cashMoney = 	_primary select 7;
+	```
+	
+	* AFTER
+	
+	```
+	_worldspace = 	_primary select 4;
+	_humanity =		_primary select 5;
+	_lastinstance =	_primary select 6;
+	```
+	
+1. ADD
+
+	```
+	_playerObj setVariable ["moneychanged",0,true];	
+	_playerObj setVariable ["bankchanged",0,true];	
+	```
+	
+	* AFTER
+	
+	```
+	_playerObj setVariable["zombieKills",(_stats select 0),true];
+	_playerObj setVariable["headShots",(_stats select 1),true];
+	_playerObj setVariable["humanKills",(_stats select 2),true];
+	_playerObj setVariable["banditKills",(_stats select 3),true];
+	_playerObj addScore (_stats select 1);
+	```
+	
+1. REPLACE
+
+	```
+	//record for Server JIP checks
+	_playerObj setVariable["zombieKills_CHK",0];
+	_playerObj setVariable["humanKills_CHK",0,true];
+	_playerObj setVariable["banditKills_CHK",0,true];
+	_playerObj setVariable["headShots_CHK",0];
+	```
+	
+	* WITH
+	
+	```
+	//record for Server JIP checks
+	_playerObj setVariable["zombieKills_CHK",0,true];
+	_playerObj setVariable["humanKills_CHK",0,true];
+	_playerObj setVariable["banditKills_CHK",0,true];
+	_playerObj setVariable["headShots_CHK",0,true];
+	```
+	
+1. ADD
+
+	```
+	_playerObj setVariable ["cashMoney",_cashMoney,true];
+	_playerObj setVariable ["cashMoney_CHK",_cashMoney];
+	```
+	
+	* AFTER
+	
+	```
+	//_playerObj setVariable["worldspace",_worldspace,true];
+	//_playerObj setVariable["state",_state,true];
+	_playerObj setVariable["lastPos",getPosATL _playerObj];
+	```
+	
+1. ADD
+
+	```
+	_key2 = format["CHILD:298:%1:",_playerID];
+	_primary2 = _key2 call server_hiveReadWrite;
+	if(count _primary2 > 0) then {
+		if((_primary2 select 0) != "ERROR") then {
+			_bankMoney = _primary2 select 1;
+			_playerObj setVariable["bankMoney",_bankMoney,true];
+			_playerObj setVariable["bankMoney_CHK",_bankMoney];
+		} else {
+			_playerObj setVariable["bankMoney",0,true];
+			_playerObj setVariable["bankMoney_CHK",0];
+		};
+	} else {
+		_playerObj setVariable["bankMoney",0,true];
+		_playerObj setVariable["bankMoney_CHK",0];
+	};
+	```
+	
+	* ABOVE
+	
+	```
+	PVDZE_plr_Login = nil;
+	PVDZE_plr_Login2 = nil;
+	```
+	
+
