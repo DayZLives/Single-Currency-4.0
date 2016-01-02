@@ -116,7 +116,7 @@ TraderDialogLoadItemList = {
 		_stextCurrency = CurrencyName;
 		_order = _x select 5;
 		_afile = _x select 7;
-		_File = "DAYZ_CODE\ACTIONS\" + _afile + ".sqf";
+		_File = "custom\singlecurrency\actions\" + _afile + ".sqf";
 		_count = 0;
 
 		if(_type == "CfgVehicles") then {

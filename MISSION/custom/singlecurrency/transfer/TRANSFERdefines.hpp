@@ -1,4 +1,4 @@
-class ATM_RscScrollBar
+class TRANSFER_RscScrollBar
 {
 	color[] = {1,1,1,0.6};
 	colorActive[] = {1,1,1,1};
@@ -17,7 +17,7 @@ class ATM_RscScrollBar
 	autoScrollRewind = 0;
 };
 
-class ATM_RscControlsGroup {
+class TRANSFER_RscControlsGroup {
 	type = 15;
 	idc = -1;
 	x = 0;
@@ -27,13 +27,13 @@ class ATM_RscControlsGroup {
 	shadow = 0;
 	style = 16;
 
-	class VScrollBar : ATM_RscScrollBar
+	class VScrollBar : TRANSFER_RscScrollBar
 	{
 		width = 0.021;
 		autoScrollEnabled = 1;
 	};
 
-	class HScrollBar : ATM_RscScrollBar
+	class HScrollBar : TRANSFER_RscScrollBar
 	{
 		height = 0.028;
 	};
@@ -41,7 +41,7 @@ class ATM_RscControlsGroup {
 	class Controls {};
 };
 
-class ATM_RscControlsGroupNoScrollbars : ATM_RscControlsGroup {
+class TRANSFER_RscControlsGroupNoScrollbars : TRANSFER_RscControlsGroup {
 	class VScrollbar : VScrollbar {
 		width = 0;
 	};
@@ -50,7 +50,7 @@ class ATM_RscControlsGroupNoScrollbars : ATM_RscControlsGroup {
 	};
 };
 
-class ATM_RscHud 
+class TRANSFER_RscHud 
 {
 	idc = -1;
 	type = 0;
@@ -63,7 +63,7 @@ class ATM_RscHud
 	text = "";
 };
 
-class ATM_RscListNBox
+class TRANSFER_RscListNBox
 {
 	style = 16;
 	type = 102;
@@ -79,11 +79,11 @@ class ATM_RscListNBox
 	colorSelectBackground[] = {0.95,0.95,0.95,1};
 	colorSelectBackground2[] = {1,1,1,0.5};
 	period = 1.2;
-	class ListScrollBar: ATM_RscScrollBar{};
-	class ScrollBar: ATM_RscScrollBar{};
+	class ListScrollBar: TRANSFER_RscScrollBar{};
+	class ScrollBar: TRANSFER_RscScrollBar{};
 };
 
-class ATM_RscText {
+class TRANSFER_RscText {
 	x = 0;
 	y = 0;
 	h = 0.037;
@@ -103,7 +103,7 @@ class ATM_RscText {
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class ATM_RscLine : ATM_RscText {
+class TRANSFER_RscLine : TRANSFER_RscText {
 	idc = -1;
 	style = 176;
 	x = 0.17;
@@ -115,7 +115,7 @@ class ATM_RscLine : ATM_RscText {
 	colorText[] = {1, 1, 1, 1.0};
 };
 
-class ATM_RscTree {
+class TRANSFER_RscTree {
 	style = 2;
 	font = "Zeppelin32";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
@@ -130,13 +130,13 @@ class ATM_RscTree {
 	borderSize = 0;
 };
 
-class ATM_RscTitle : ATM_RscText {
+class TRANSFER_RscTitle : TRANSFER_RscText {
 	style = 0;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	colorText[] = {0.95, 0.95, 0.95, 1};
 };
 
-class ATM_RscPicture {
+class TRANSFER_RscPicture {
 	shadow = 0;
 	type = 0;
 	style = 48;
@@ -153,18 +153,18 @@ class ATM_RscPicture {
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class ATM_RscTextMulti : ATM_RscText
+class TRANSFER_RscTextMulti : TRANSFER_RscText
 {
 	linespacing = 1;
 	style = 0 + 16 + 0x200;
 };
 
-class ATM_RscPictureKeepAspect : ATM_RscPicture 
+class TRANSFER_RscPictureKeepAspect : TRANSFER_RscPicture 
 {
 	style = 0x30 + 0x800;
 };
 
-class ATM_RscStructuredText {
+class TRANSFER_RscStructuredText {
 	type = 13;
 	style = 0;
 	x = 0;
@@ -183,7 +183,7 @@ class ATM_RscStructuredText {
 	};
 };
 
-class ATM_RscActiveText {
+class TRANSFER_RscActiveText {
 	idc = -1;
     type = 11;
     style = 0;
@@ -202,7 +202,7 @@ class ATM_RscActiveText {
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 
-class ATM_RscButton 
+class TRANSFER_RscButton 
 {
 	style = 2;
 	x = 0;
@@ -232,7 +232,7 @@ class ATM_RscButton
 	sound[] ={ "", 0, 1 };
 };
 
-class ATM_RscButtonTextOnly : ATM_RscButton {
+class TRANSFER_RscButtonTextOnly : TRANSFER_RscButton {
 	SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 	colorBackground[] = {1, 1, 1, 0};
 	colorBackgroundActive[] = {1, 1, 1, 0};
@@ -242,7 +242,7 @@ class ATM_RscButtonTextOnly : ATM_RscButton {
 	borderSize = 0.0;
 };
 
-class ATM_RscShortcutButton {
+class TRANSFER_RscShortcutButton {
 	idc = -1;
 	style = 0;
 	default = 0;
@@ -311,7 +311,7 @@ class ATM_RscShortcutButton {
 	sound[] = { "", 0, 1 };
 };
 
-class ATM_RscButtonMenu : ATM_RscShortcutButton {
+class TRANSFER_RscButtonMenu : TRANSFER_RscShortcutButton {
 	idc = -1;
 	type = 16;
 	style = "0x02 + 0xC0";
@@ -367,7 +367,7 @@ class ATM_RscButtonMenu : ATM_RscShortcutButton {
 	textureNoShortcut = "";
 };
 
-class ATM_RscShortcutButtonMain : ATM_RscShortcutButton {
+class TRANSFER_RscShortcutButtonMain : TRANSFER_RscShortcutButton {
 	idc = -1;
 	style = 0;
 	default = 0;
@@ -418,7 +418,7 @@ class ATM_RscShortcutButtonMain : ATM_RscShortcutButton {
 	};
 };
 
-class ATM_RscCheckbox {
+class TRANSFER_RscCheckbox {
 	idc = -1;
 	type = 7;
 	style = 0;
@@ -447,7 +447,7 @@ class ATM_RscCheckbox {
 	sound[] ={ "", 0, 1 };
 };
 
-class ATM_RscProgress 
+class TRANSFER_RscProgress 
 {
 	type = 8;
 	style = 0;
@@ -462,7 +462,7 @@ class ATM_RscProgress
 	colorBar[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.7])"};
 };
 
-class ATM_RscListBox 
+class TRANSFER_RscListBox 
 {
 	style = 16;
 	idc = -1;
@@ -492,7 +492,7 @@ class ATM_RscListBox
 	tooltipColorText[] = {1,1,1,1};
 	tooltipColorBox[] = {1,1,1,1};
 	tooltipColorShade[] = {0,0,0,0.65};
-	class ListScrollBar: ATM_RscScrollBar
+	class ListScrollBar: TRANSFER_RscScrollBar
 	{
 		color[] = {1,1,1,1};
 		autoScrollEnabled = 1;
@@ -504,7 +504,7 @@ class ATM_RscListBox
 	sound[] ={ "", 0, 1 };
 };
 
-class ATM_RscEdit {
+class TRANSFER_RscEdit {
 	type = 2;
 	style = 0x00 + 0x40;
 	font = "Zeppelin32";
@@ -523,13 +523,13 @@ class ATM_RscEdit {
 	sound[] ={ "", 0, 1 };
 };
 
-class ATM_RscSlider {
+class TRANSFER_RscSlider {
 	h = 0.025;
 	color[] = {1, 1, 1, 0.8};
 	colorActive[] = {1, 1, 1, 1};
 };
 
-class ATM_RscXSliderH 
+class TRANSFER_RscXSliderH 
 {
 	style = 1024;
 	type = 43;
@@ -553,7 +553,7 @@ class ATM_RscXSliderH
 	thumb = "IMG\GUI\slider\thumb_ca.paa";
 };
 
-class ATM_RscFrame {
+class TRANSFER_RscFrame {
 	type = 0;
 	idc = -1;
 	style = 64;
@@ -565,7 +565,7 @@ class ATM_RscFrame {
 	text = "";
 };
 
-class ATM_RscBackground : ATM_RscText {
+class TRANSFER_RscBackground : TRANSFER_RscText {
 	type = 0;
 	IDC = -1;
 	style = 512;
@@ -581,7 +581,7 @@ class ATM_RscBackground : ATM_RscText {
 	SizeEx = 1;
 };
 
-class ATM_RscHTML {
+class TRANSFER_RscHTML {
 	colorText[] = {1, 1, 1, 1.0};
 	colorBold[] = {1, 1, 1, 1.0};
 	colorLink[] = {1, 1, 1, 0.75};
@@ -634,7 +634,7 @@ class ATM_RscHTML {
 	};
 };
 
-class ATM_RscCombo {
+class TRANSFER_RscCombo {
 	style = 16;
 	type = 4;
 	x = 0;
@@ -656,10 +656,10 @@ class ATM_RscCombo {
 	colorDisabled[] = {1, 1, 1, 0.25};
 	font = "Zeppelin32";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	class ComboScrollBar : ATM_RscScrollBar {};
+	class ComboScrollBar : TRANSFER_RscScrollBar {};
 };
 
-class ATM_RscToolbox {
+class TRANSFER_RscToolbox {
 	colorText[] = {0.95, 0.95, 0.95, 1};
 	color[] = {0.95, 0.95, 0.95, 1};
 	colorTextSelect[] = {0.95, 0.95, 0.95, 1};
